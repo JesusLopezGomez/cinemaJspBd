@@ -41,7 +41,7 @@
 						</form>
 					</td>
 					<td>
-						<form>
+						<form action="./deleteCinema.jsp">
 							<input type="text" name="cineBorrar" value='<%=c.getCine()%>' hidden>
 							<button type="submit" name="borrar">Borrar</button>
 						</form>

@@ -21,7 +21,7 @@
 		c = CineRepository.getCinema(request.getParameter("cine"));
 		
 	%>
-		<form action="">
+		<form>
 		  <div class="form-group row">
 		    <label for="cine" class="col-4 col-form-label">Cine</label> 
 		    <div class="col-8">
@@ -31,13 +31,13 @@
 		  <div class="form-group row">
 		    <label for="ciudad" class="col-4 col-form-label">Ciudad</label> 
 		    <div class="col-8">
-		      <input id="ciudad" name="ciudad" type="text" class="form-control" value='<%=c.getCiudadCine() %>'>
+		      <input id="ciudad" name="ciudad" type="text" class="form-control">
 		    </div>
 		  </div>
 		  <div class="form-group row">
 		    <label for="ciudad" class="col-4 col-form-label">Direccion</label> 
 		    <div class="col-8">
-		      <input id="ciudad" name="direccion" type="text" class="form-control" value='<%=c.getDireccionCine() %>'>
+		      <input id="ciudad" name="direccion" type="text" class="form-control">
 		    </div>
 		  </div> 
 		  <div class="form-group row">
@@ -49,7 +49,8 @@
 		<%
 		if(request.getParameter("submit") != null){
 			Cinema c2 = new Cinema(request.getParameter("cine"),request.getParameter("ciudad"),request.getParameter("direccion"));
-			CineRepository.anniadirCine(c2);
+			CineRepository.editarCine(c2);
+			response.sendRedirect("listarCinema.jsp");
 		}
 		%>
 

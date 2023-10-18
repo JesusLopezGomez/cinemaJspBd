@@ -29,7 +29,23 @@ public class CineRepository {
 		return result;
 	}
 	
-	
+	public static Cinema editarCine(Cinema c){
+		Transaction transaction = null;
+		Cinema result = null;
+		if(c.getCine() != null) {
+			Session session = BdUtil.getSessionFactory().openSession();
+			transaction = session.beginTransaction();
+			try {
+				result = session.merge(c);
+				transaction.commit();
+			}catch (Exception e) {
+				transaction.rollback();
+			}
+			
+			session.close();
+		}
+		return result;
+	}
 	
 	public static List<Cinema> getCinemas(){
 		Session session = BdUtil.getSessionFactory().openSession();
@@ -40,7 +56,7 @@ public class CineRepository {
 	public static Cinema getCinema(String cine) {
 		Cinema result = null;
 		Session session = BdUtil.getSessionFactory().openSession();
-		
+
 		SelectionQuery<Cinema> q =
 				session.createSelectionQuery("From Cinema where cinema = :cinema", Cinema.class);
 				q.setParameter("cinema", cine);
@@ -54,13 +70,18 @@ public class CineRepository {
 	public static void deleteCinema(String cine) {
 		Cinema result = null;
 		Session session = BdUtil.getSessionFactory().openSession();
-		
+		Transaction transaction = null;
+
 		SelectionQuery<Cinema> q =
-				session.createSelectionQuery("From cinema where cinema = :cinema", Cinema.class);
+				session.createSelectionQuery("From Cinema where cinema = :cinema", Cinema.class);
 				q.setParameter("cinema", cine);
 				List<Cinema> cinemas = q.getResultList();
-		if(cinemas.size() != 0) result = cinemas.get(0);
-		session.remove(result);
+		if(cinemas.size() != 0) {
+			transaction = session.beginTransaction();
+			result = cinemas.get(0);
+			session.remove(result);
+			transaction.commit();
+		}
 	}
 
 }
