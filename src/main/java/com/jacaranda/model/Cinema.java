@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Cinema {
 	@Id
 	@Column(name="cine")
-	private String Cinema;
+	private String cinema;
 	@Column(name="ciudad_cine")
 	private String cityCinema;
 	@Column(name="direccion_cine")
@@ -20,7 +20,7 @@ public class Cinema {
 	
 	public Cinema(String cine, String ciudadCine, String direccionCine) {
 		super();
-		this.Cinema = cine;
+		this.cinema = cine;
 		this.cityCinema = ciudadCine;
 		this.addressCinema = direccionCine;
 	}
@@ -30,11 +30,11 @@ public class Cinema {
 	}
 
 	public String getCine() {
-		return Cinema;
+		return cinema;
 	}
 
 	public void setCine(String cine) {
-		this.Cinema = cine;
+		this.cinema = cine;
 	}
 
 	public String getCiudadCine() {
@@ -55,7 +55,7 @@ public class Cinema {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Cinema);
+		return Objects.hash(cinema);
 	}
 
 	@Override
@@ -67,12 +67,12 @@ public class Cinema {
 		if (getClass() != obj.getClass())
 			return false;
 		Cinema other = (Cinema) obj;
-		return Objects.equals(Cinema, other.Cinema);
+		return Objects.equals(cinema, other.cinema);
 	}
 
 	@Override
 	public String toString() {
-		return "Cine [cine=" + Cinema + ", ciudadCine=" + cityCinema + ", direccionCine=" + addressCinema + "]";
+		return "Cine [cine=" + cinema + ", ciudadCine=" + cityCinema + ", direccionCine=" + addressCinema + "]";
 	}
 	
 	

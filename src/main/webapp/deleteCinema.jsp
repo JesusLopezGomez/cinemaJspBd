@@ -16,7 +16,7 @@
 	try{
 		
 		Cinema c = new Cinema(request.getParameter("cine"),request.getParameter("ciudad"),request.getParameter("direccion"));
-		CineRepository.deleteCinme(c);
+		//CineRepository.deleteCinema(c);
 	}catch(Exception e){
 		//Dos posibibilidades que no me haya pasado o que haya fallado al añadir.
 	}
